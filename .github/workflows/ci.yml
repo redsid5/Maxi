@@ -1,0 +1,22 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Adapters are in sync with MAXI.md
+        run: |
+          node scripts/build-adapters.mjs
+          git diff --exit-code -- adapters/ || (echo "::error::adapters/ is out of date — run node scripts/build-adapters.mjs and commit" && exit 1)
+      - name: CLI tests
+        run: cd cli && npm test
+      - name: CLI packs
+        run: cd cli && npm pack --dry-run

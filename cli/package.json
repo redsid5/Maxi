@@ -1,0 +1,17 @@
+{
+  "name": "maxi-cli",
+  "version": "1.0.0",
+  "description": "MAXI prompt compiler — tell it what you want, it figures out how to ask AI for it. Works with OpenAI, Anthropic, Gemini, Ollama, or any OpenAI-compatible server.",
+  "type": "module",
+  "bin": { "maxi": "./src/cli.mjs" },
+  "files": ["src/", "MAXI.md", "README.md"],
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "prepack": "cp ../MAXI.md ./MAXI.md",
+    "test": "node test/run.mjs"
+  },
+  "keywords": ["prompt", "prompt-engineering", "llm", "openai", "anthropic", "gemini", "ollama", "cli", "compiler"],
+  "license": "Apache-2.0",
+  "repository": { "type": "git", "url": "https://github.com/redsid5/maxi", "directory": "cli" },
+  "homepage": "https://github.com/redsid5/maxi#readme"
+}
